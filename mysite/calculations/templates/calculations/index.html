@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transitions</title>
+    <link rel="stylesheet" href="{% static 'calculations/css/style.css' %}">
+    <script src="https://kit.fontawesome.com/586262de07.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="wraper">
+        <header class="header">
+            <div class="container">
+                <div class="header__flex">
+                    <div class="header__photo"><img src="{% static 'calculations/img/header_photo.jpg' %}" alt=""></div>
+                    <div class="header__title">Назва підприємства</div>
+                    <div class="header__info">
+                        <div class="header__communication">
+                            <ul class="header__list">
+                                <li><i class="fa-solid fa-phone"></i><a href="" class="header__link">+380678375519</a></li>
+                                <li><i class="fa-solid fa-phone"></i><a href="" class="header__link">+380967322848</a></li>
+                                <li><i class="fa-regular fa-envelope"></i><a href="" class="header__link">yurakuznetsov23@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="nav">
+            <a href="{% url 'home' %}" class="nav__item"><i class="fa-solid fa-house"></i>Головна</a>
+            <a href="{% url 'valveBox' %}" class="nav__item active"><i class="fa-solid fa-box-open"></i>Клапанний</a>
+            <a href="{% url 'cuttingBox' %}" class="nav__item"><i class="fa-solid fa-box-open"></i>Висічка</a>
+            <a href="{% url 'price' %}" class="nav__item"><i class="fa-solid fa-sack-dollar"></i>Ціни</a>
+            <a href="{% url 'other' %}" class="nav__item"><i class="fa-solid fa-gear"></i>Інші параметри</a>
+        </div>
+        <main class="main">
+            <div class="container">
+                <form action="calcprice">
+                    <div class="size">
+                        <div class="size__flex">
+                            <div class="size__get">
+                                <div class="size__item">
+                                    <div class="size__label">Довжина</div>
+                                    <input type="text" class="size__input" name="length" placeholder="..." id="in1" onchange="onChange('minLen', 'maxLen', 'in1')" oninput="onInput('minLen', 'maxLen', 'in1')">
+                                </div>
+                                <div class="size__item">
+                                    <div class="size__label">Ширина</div>
+                                    <input type="text" class="size__input" name="width" placeholder="..." id="in2" onchange="onChange('minWid', 'maxWid', 'in2')" oninput="onInput('minWid', 'maxWid', 'in2')">
+                                </div>
+                                <div class="size__item">
+                                    <div class="size__label">Висота</div>
+                                    <input type="text" class="size__input" name="height" placeholder="..." id="in3" onchange="onChange('minHei', 'maxHei', 'in3')" oninput="onInput('minHei', 'maxHei', 'in3')">
+                                </div>
+                                <div class="size__item">
+                                    <div class="size__label">Доставка</div>
+                                    <input type="text" class="size__input" name="delivery" placeholder="..." id="in4">
+                                </div>
+                                <div class="size__item">
+                                    <div class="size__label">Націнка</div>
+                                    <input type="text" class="size__input" name="mark-up" placeholder="..." id="in5">
+                                </div>
+                            </div>
+                            <div class="size__view">
+                                <div class="size__scene">
+                                    <div class="box-size">
+                                        <div class="box-size__side box-size__side_front">front</div>
+                                        <div class="box-size__side box-size__side_back">back</div>
+                                        <div class="box-size__side box-size__side_right">right</div>
+                                        <div class="box-size__side box-size__side_left">left</div>
+                                        <div class="box-size__side box-size__side_top">top</div>
+                                        <div class="box-size__side box-size__side_bottom">bottom</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+        
+                    <div class="params">
+                        <div class="params__flex">
+    
+                            <div class="params__column">
+                                <div class="params__title">Шари</div>
+                                <div class="params__select">
+                                    <select id="Layers" onchange="selectedLayers()">
+                                        <option value="-">-</option>
+                                        <option value="Т">Т</option>
+                                        <option value="П">П</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="params__column">
+                                <div class="params__title">Марка</div>
+                                <div class="params__select">
+                                    <select id="Marka" disabled onchange="changeMarka()">
+                                        <option value="-">-</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="params__column">
+                                <div class="params__title">Профіль</div>
+                                <div class="params__select">
+                                    <select id="Profile" disabled>
+                                        <option value="-">-</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="params__column">
+                                <div class="params__title">Колір</div>
+                                <div class="params__select">
+                                    <select id="Colour" disabled>
+                                        <option value="-">-</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="params__column">
+                                <div class="params__title">Друк</div>
+                                <div class="params__select">
+                                    <select id="Print">
+                                        <option value="-">-</option>
+                                        <option value="-">0</option>
+                                        <option value="-">1</option>
+                                        <option value="-">2</option>
+                                        <option value="-">Повн</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <input type="submit" value="Обрахувати" class="submitButton">
+                </form>
+
+                <div class="answer">
+                    Ціна ящика: 
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'calculations/js/script.js' %}"></script>
+    <script src="{% static 'calculations/js/box.js' %}"></script>
+</body>
+</html>
