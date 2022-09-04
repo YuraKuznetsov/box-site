@@ -12,7 +12,7 @@
 <body>
 
     <div class="wraper">
-        <header class="header">
+        <!--<header class="header">
             <div class="container">
                 <div class="header__flex">
                     <div class="header__photo"><img src="{% static 'calculations/img/header_photo.jpg' %}" alt=""></div>
@@ -28,9 +28,9 @@
                     </div>
                 </div>
             </div>
-        </header>
+        </header>-->
         <div class="nav">
-            <a href="{% url 'home' %}" class="nav__item"><i class="fa-solid fa-house"></i>Головна</a>
+            <a href="{% url 'index' %}" class="nav__item"><i class="fa-solid fa-house"></i>Головна</a>
             <a href="{% url 'valveBox' %}" class="nav__item active"><i class="fa-solid fa-box-open"></i>Клапанний</a>
             <a href="{% url 'cuttingBox' %}" class="nav__item"><i class="fa-solid fa-box-open"></i>Висічка</a>
             <a href="{% url 'price' %}" class="nav__item"><i class="fa-solid fa-sack-dollar"></i>Ціни</a>
@@ -38,29 +38,30 @@
         </div>
         <main class="main">
             <div class="container">
-                <form action="calcprice">
+                <form action="" method="get" id="valveForm">
+                    <!-- {% csrf_token %} -->
                     <div class="size">
                         <div class="size__flex">
                             <div class="size__get">
                                 <div class="size__item">
                                     <div class="size__label">Довжина</div>
-                                    <input type="text" class="size__input" name="length" placeholder="..." id="in1" onchange="onChange('minLen', 'maxLen', 'in1')" oninput="onInput('minLen', 'maxLen', 'in1')">
+                                    <input type="text" class="size__input" name="length" placeholder="..." id="in1" value="{{ params.length }}" onchange="onChange('minLen', 'maxLen', 'in1')" oninput="onInput('minLen', 'maxLen', 'in1')">
                                 </div>
                                 <div class="size__item">
                                     <div class="size__label">Ширина</div>
-                                    <input type="text" class="size__input" name="width" placeholder="..." id="in2" onchange="onChange('minWid', 'maxWid', 'in2')" oninput="onInput('minWid', 'maxWid', 'in2')">
+                                    <input type="text" class="size__input" name="width" placeholder="..." id="in2" value="{{ params.width }}" onchange="onChange('minWid', 'maxWid', 'in2')" oninput="onInput('minWid', 'maxWid', 'in2')">
                                 </div>
                                 <div class="size__item">
                                     <div class="size__label">Висота</div>
-                                    <input type="text" class="size__input" name="height" placeholder="..." id="in3" onchange="onChange('minHei', 'maxHei', 'in3')" oninput="onInput('minHei', 'maxHei', 'in3')">
+                                    <input type="text" class="size__input" name="height" placeholder="..." id="in3" value="{{ params.height }}" onchange="onChange('minHei', 'maxHei', 'in3')" oninput="onInput('minHei', 'maxHei', 'in3')">
                                 </div>
                                 <div class="size__item">
                                     <div class="size__label">Доставка</div>
-                                    <input type="text" class="size__input" name="delivery" placeholder="..." id="in4">
+                                    <input type="text" class="size__input" name="delivery" placeholder="..." id="in4" value="{{ params.delivery }}">
                                 </div>
                                 <div class="size__item">
                                     <div class="size__label">Націнка</div>
-                                    <input type="text" class="size__input" name="mark-up" placeholder="..." id="in5">
+                                    <input type="text" class="size__input" name="markup" placeholder="..." id="in5" value="{{ params.markup }}">
                                 </div>
                             </div>
                             <div class="size__view">
@@ -85,7 +86,7 @@
                             <div class="params__column">
                                 <div class="params__title">Шари</div>
                                 <div class="params__select">
-                                    <select id="Layers" onchange="selectedLayers()">
+                                    <select id="Layers" onchange="selectedLayers()" form="valveForm" name="layers">
                                         <option value="-">-</option>
                                         <option value="Т">Т</option>
                                         <option value="П">П</option>
@@ -96,7 +97,7 @@
                             <div class="params__column">
                                 <div class="params__title">Марка</div>
                                 <div class="params__select">
-                                    <select id="Marka" disabled onchange="changeMarka()">
+                                    <select id="Marka" disabled onchange="changeMarka()" form="valveForm" name="marka">
                                         <option value="-">-</option>
                                     </select>
                                 </div>
@@ -105,7 +106,7 @@
                             <div class="params__column">
                                 <div class="params__title">Профіль</div>
                                 <div class="params__select">
-                                    <select id="Profile" disabled>
+                                    <select id="Profile" disabled  form="valveForm" name="profile">
                                         <option value="-">-</option>
                                     </select>
                                 </div>
@@ -114,7 +115,7 @@
                             <div class="params__column">
                                 <div class="params__title">Колір</div>
                                 <div class="params__select">
-                                    <select id="Colour" disabled>
+                                    <select id="Colour" disabled  form="valveForm" name="colour">
                                         <option value="-">-</option>
                                     </select>
                                 </div>
@@ -123,7 +124,7 @@
                             <div class="params__column">
                                 <div class="params__title">Друк</div>
                                 <div class="params__select">
-                                    <select id="Print">
+                                    <select id="Print" form="valveForm" name="print">
                                         <option value="-">-</option>
                                         <option value="-">0</option>
                                         <option value="-">1</option>
@@ -139,7 +140,8 @@
                 </form>
 
                 <div class="answer">
-                    Ціна ящика: 
+                    Ціна ящика: {{ price }}<br>
+                    Площа: {{ square }}
                 </div>
             </div>
         </main>

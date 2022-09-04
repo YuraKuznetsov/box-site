@@ -1,3 +1,15 @@
 from django.db import models
 
-# Create your models here.
+
+class Prices20(models.Model):
+    mark = models.CharField(max_length=10)
+    color = models.CharField(max_length=10)
+    profile = models.CharField(max_length=10)
+    price = models.CharField(max_length=10)
+
+
+class Prices30(models.Model):
+    mark = models.CharField(max_length=10)
+    color = models.CharField(max_length=10)
+    profile = models.CharField(max_length=10)
+    price = models.CharField(max_length=10)
