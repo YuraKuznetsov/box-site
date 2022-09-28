@@ -1,0 +1,26 @@
+{% extends 'calculations/layout.html' %}
+{% load static %}
+
+{% block title %}
+Ціни гофрокартону
+{% endblock %}
+
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'calculations/css/valve.css' %}">
+<link rel="stylesheet" href="{% static 'calculations/css/prices.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-md">
+    <h1 class="title">Встановлення цін та інших параметрів</h1>
+    <a href="{% url 'prices20' %}"><button class="btn btn-primary">Змінити ціни 3 шарового</button></a>
+    <a href="{% url 'prices30' %}"><button class="btn btn-primary">Змінити ціни 5 шарового</button></a>
+    
+</div>
+{% endblock %}
+
+{% block js_links %}
+    <script src="{% static 'calculations/js/prices.js' %}"></script>
+{% endblock %}
+

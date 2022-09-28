@@ -1,0 +1,57 @@
+{% extends 'calculations/layout.html' %}
+{% load static %}
+
+{% block title %}
+П'яти шаровий ціни
+{% endblock %}
+
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'calculations/css/valve.css' %}">
+<link rel="stylesheet" href="{% static 'calculations/css/prices.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="container-md">
+    <h1 class="title h1">Таблиця 5 шарових</h1>
+    <form action="save" method="post">
+        {% csrf_token %}
+        
+        <table class="table">
+            <tr class="table__row">
+                <th class="header-item h3">Марка</th>
+                <th class="header-item h3">Профіль</th>
+                <th class="header-item h3">Колір</th>
+                <th class="header-item h3">Ціна</th>
+            </tr>
+            {% for mark in marks %}
+            {% for profile in profiles %}
+            {% for color in colors %}
+
+                {% with mark|add:"_"|add:profile|add:"_"|add:color as params %}
+                
+
+                <tr class="table__row">
+                    <td>{{ mark }}</td>
+                    <td>{{ profile }}</td>
+                    <td>{{ color }}</td>
+                    <td><input type="number" name="{{ params }}" value="{{ data.params }}" class="table__input" step="0.01" min="0"></td>
+                </tr>
+
+                {% endwith %}
+
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+
+        </table>
+        <button type="submit" class="submit_button">Зберегти</button>
+    </form>
+    
+    <a href="{% url 'prices' %}"><i class="fa-solid fa-left-long arr-back"></i></a>
+</div>
+{% endblock %}
+
+{% block js_links %}
+    <script src="{% static 'calculations/js/prices.js' %}"></script>
+{% endblock %}

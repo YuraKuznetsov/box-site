@@ -224,7 +224,6 @@ body {
   -webkit-column-gap: 20px;
      -moz-column-gap: 20px;
           column-gap: 20px;
-  color: rgb(1, 138, 1);
 }
 
 .nav-link.act {
@@ -504,8 +503,9 @@ td {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 120px;
           flex: 0 0 120px;
-  background: black;
+  background: rgb(49, 49, 49);
   color: #1995ad;
+  color: #f1f1f2;
   padding: 30px 0;
 }
 @media (max-width: 767px) {
@@ -524,4 +524,5 @@ td {
 }
 .footer a {
   color: #1995ad;
+  color: #f1f1f2;
 }

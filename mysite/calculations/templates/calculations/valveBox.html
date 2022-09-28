@@ -54,7 +54,7 @@ active
             <div class="params__item">
                 <div class="params__title">Марка</div>
                 <div class="params__select">
-                    <select id="Marka"  form="valveForm" name="marka">
+                    <select id="Marka"  form="valveForm" name="mark">
                         <option value="20">20</option>
                         <option value="21" selected>21</option>
                         <option value="22">22</option>
@@ -78,7 +78,7 @@ active
             <div class="params__item">
                 <div class="params__title">Колір</div>
                 <div class="params__select">
-                    <select id="Colour" form="valveForm" name="colour">
+                    <select id="Colour" form="valveForm" name="color">
                         <option value="white">Білий</option>
                         <option value="brown" selected>Бурий</option>
                     </select>
@@ -87,7 +87,7 @@ active
             <div class="params__item">
                 <div class="params__title">Друк</div>
                 <div class="params__select">
-                    <select id="Print" form="valveForm" name="print">
+                    <select id="Print" form="valveForm" name="printing">
                         <option value="0">Без друку</option>
                         <option value="1">1 колір</option>
                         <option value="2">2 кольри</option>
@@ -106,6 +106,9 @@ active
 <div class="answers">
     <div class="answers__item">
         Ціна ящика: <span class="strong">{{ price }}</span>
+    </div>
+    <div class="answers__item">
+        Площа ящика: <span class="strong">{{ square }}</span>
     </div>
     <div class="asnwers__item">
         Мінімальний тираж: <span class="strong">{{ min_circulation }}</span>
